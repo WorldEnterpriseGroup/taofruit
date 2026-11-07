@@ -58,7 +58,7 @@
 /**
 * Importing necessary  Styles.
 **/
-@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,900|Poppins:300,400,500,600');
+@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,900|Poppins:300,400,500,600&display=swap');
 /*----bootstrap css ----- */
 @import url('../vendor/bootstrap/bootstrap.css');
 /*----bootstrap Select ----- */
@@ -202,9 +202,10 @@
   font-family: 'font-awesome';
   src: url('../fonts/font-awesome/fonts/fontawesome-webfont.ttf');
   src: url('../fonts/font-awesome/fonts/fontawesome-webfont.eot'), /* IE9 Compat Modes */
-       url('../fonts/font-awesome/fonts/fontawesome-webfont.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.1') format('woff2'), /* Super Modern Browsers */
        url('../fonts/font-awesome/fonts/fontawesome-webfont.woff') format('woff'), /* Pretty Modern Browsers */
        url('../fonts/font-awesome/fonts/fontawesome-webfont.svg') format('svg'); /* Legacy iOS */
+  font-display: swap;
  }
 
  body {
@@ -595,7 +596,9 @@ header.theme-menu-wrapper.menu-style-three.fixed #mega-menu-wrapper .nav>li>a {p
   background: url(../svg/1.svg);
   height: 100%;
 }
-#theme-main-banner {margin-bottom: 90px;}
+/* Reserve the banner's height until the Camera slider script has run; it sizes the
+   slider to 47% of the width with a 700px minimum, which otherwise pushes the page down. */
+#theme-main-banner {margin-bottom: 90px; aspect-ratio: 100 / 47; min-height: 700px;}
 .camera_wrap {
   float:none;
 }
@@ -1216,7 +1219,7 @@ header.theme-menu-wrapper.menu-style-three.fixed #mega-menu-wrapper .nav>li>a {p
 .home-service-section ul li div i.flaticon-bar-chart {color: #2ed876;}
 .home-service-section ul li div i.flaticon-smartphone {color: #ffba34;}
 /*------------------- Two Section Wrapper -----------------*/
-.two-section-wrapper {background: url(../images/home/shape-3.png) no-repeat center;}
+.two-section-wrapper {background: url(../images/home/shape-3.webp) no-repeat center;}
 /*--------------------- Testimonial ---------------------*/
 .testimonial-section {
   padding: 130px 0 150px 0;
@@ -1442,7 +1445,7 @@ header.theme-menu-wrapper.menu-style-three.fixed #mega-menu-wrapper .nav>li>a {p
 }
 .home-blog-section .single-blog {margin-bottom: 85px;}
 /*----------------------- Footer ---------------------*/
-footer.bg-one {background: url(../images/home/footer.png) no-repeat center center;background-size: cover;}
+footer.bg-one {background: url(../images/home/footer.webp) no-repeat center center;background-size: cover;}
 footer.bg-two {
   background: url(../images/home/footer2.jpg) no-repeat center center;background-size: cover;
   padding-top: 150px;
@@ -3060,3 +3063,7 @@ div.logo {
  
 }
 .cls-1{fill:#874098 !important;}.cls-2{fill:#81c342;}.cls-3{fill:#e77925;}.cls-4{fill:#fff;}.cls-5{fill:#d5e8bd;}.cls-6{fill:#231f20;}.cls-7{fill:#7f3f98;}
+
+/* width/height attributes on images reserve their space (no layout shift); this keeps the
+   rendered height automatic wherever no rule sets one, exactly as before they were added. */
+:where(img[width][height]) {height: auto;}
